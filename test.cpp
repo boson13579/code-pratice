@@ -1,13 +1,20 @@
 #include <iostream>
 using namespace std;
-
-int main () {
-
-	int arr[3] = {1,3,4};
-	auto *ptr = arr;
-	auto *qq = &arr[0];
-
-	cout<<*ptr<<" "<<*qq<<"\n";
-	return 0;
+class My_Class{
+   private:
+      static int count;
+   public:
+      My_Class() { //in constructor increase the count value
+         cout << "Calling Constructor" << endl;
+         count++;
+      } static int objCount() {
+         return count;
+      }
+   };
+int My_Class::count;
+main() {
+   My_Class my_obj1, my_obj2, my_obj3;
+   int cnt;
+   cnt = My_Class::objCount();
+   cout << "Number of objects:" << cnt;
 }
-
