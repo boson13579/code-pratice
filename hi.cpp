@@ -4,7 +4,7 @@ using namespace std;
 class Point{
 	
 	//static int count;
-
+	//test
 	private: 
 		int dim;
 		double* val;
