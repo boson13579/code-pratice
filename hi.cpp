@@ -41,6 +41,8 @@ const string Point :: comment = "fuck";
 void Point :: setDim(int a){
 	this -> dim = a;
 	this -> val = new double[a];
+	for(int i=0 ; i<dim ; i++)
+		val[i] = 0;
 }
 
 Point :: Point(){
@@ -69,6 +71,7 @@ Point :: Point(const Point &a){
 	this -> setDim(a.getDim());
 	for(int i=0 ; i<this->getDim() ; i++)
 		this->setVal(i,a.getVal(i));
+	count++;
 }
 
 Point ::~Point(){
@@ -221,4 +224,3 @@ int main () {
 
 	return 0;
 }
-

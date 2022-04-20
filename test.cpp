@@ -13,8 +13,7 @@ class My_Class{
    };
 int My_Class::count;
 main() {
-   My_Class my_obj1, my_obj2, my_obj3;
-   int cnt;
-   cnt = My_Class::objCount();
-   cout << "Number of objects:" << cnt;
+   
+   P
+
 }
