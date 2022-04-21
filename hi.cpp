@@ -56,7 +56,7 @@ Point :: Point(){
 Point :: Point(int a){
 	this -> dim = a;
 	val = new double[a];
-	for(int i=0 ; i<sizeof(val)-1 ; i++)
+	for(int i=0 ; i<sizeof(val) ; i++)
 		val[i] = 0.0;
 	count++;
 }
@@ -190,7 +190,7 @@ int main () {
 	cout<<p1<<p2;
 	p1 += p2;
 	cout<<p1;
-	cout<<"Point p1 is :"<<endl;
+	cout<<"Point p1 is :";
 	p1.display();
 	cout<<"Point p2 is :"<<p2<<endl;
 	cout<<"Point p3 is :"<<p3<<endl;
