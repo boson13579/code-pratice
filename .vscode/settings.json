@@ -96,4 +96,5 @@
         "editor.insertSpaces": true
     },
     "java.debug.settings.enableRunDebugCodeLens": false,
+    "C_Cpp.intelliSenseEngineFallback": "Enabled",
 }
