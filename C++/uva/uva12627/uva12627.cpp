@@ -8,7 +8,7 @@ int main() {
 
     int times;
     cin >> times;
-
+	int cases = 1;
     while (times--) {
         int a, b, c;
         cin >> a >> b >> c;
@@ -32,7 +32,8 @@ int main() {
 		}
 		for(auto i:ansList)
 			ans += i;
-        cout << ans << "\n";
+        cout << "Case " << cases << ": " << ans << "\n";
+		cases++;
     }
 
     return 0;
