@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-map<string,map<int,string>> trance;
+map<string, map<int, string>> trance;
 
 int main() {
     // freopen("test.in", "r", stdin);
@@ -10,21 +10,22 @@ int main() {
 
     int a, cases = 1;
     cin >> a;
-    cout<<"CALL FORWARDING OUTPUT\n";
+    cout << "CALL FORWARDING OUTPUT\n";
     while (a--) {
         string sorce, start, during, target;
         trance.clear();
         while (cin >> sorce and sorce != "0000") {
             cin >> start >> during >> target;
             if (trance.find(sorce) == trance.end()) {
-                map<int,string> temp;
+                map<int, string> temp;
                 trance.insert(make_pair(sorce, temp));
             }
             int startInt = stoi(start);
             int durInt = stoi(during);
-            for (int i = startInt; i <= startInt+durInt; i++) trance[sorce].insert(make_pair(i,target));
+            for (int i = startInt; i <= startInt + durInt; i++)
+                trance[sorce].insert(make_pair(i, target));
         }
-        cout<<"SYSTEM "<<cases++<<"\n";
+        cout << "SYSTEM " << cases++ << "\n";
         string callTime, to;
         while (cin >> callTime and callTime != "9000") {
             cin >> to;
@@ -32,31 +33,31 @@ int main() {
             set<string> already;
             int callTimeint = stoi(callTime);
 
-            if (trance.find(to) == trance.end()){
-                cout << "AT " << callTime << " CALL TO " << to << " RINGS "<< to << "\n";
+            if (trance.find(to) == trance.end()) {
+                cout << "AT " << callTime << " CALL TO " << to << " RINGS "
+                     << to << "\n";
                 continue;
             }
-                
+
             bool circle = false;
             bool find = false;
-            while(!circle and !find){
-                if(trance[to].find(callTimeint)==trance[to].end()){
+            while (!circle and !find) {
+                if (trance[to].find(callTimeint) == trance[to].end()) {
                     find = true;
-                }
-                else{
+                } else {
                     already.insert(to);
                     to = trance[to][callTimeint];
-                    if(already.find(to)!=already.end()){
+                    if (already.find(to) != already.end()) {
                         circle = true;
                     }
-                    
                 }
             }
-            if(circle){
-                cout << "AT " << callTime << " CALL TO " << orto << " RINGS 9999\n";
-            }
-            else if(find){
-                cout << "AT " << callTime << " CALL TO " << orto << " RINGS "<< to << "\n";
+            if (circle) {
+                cout << "AT " << callTime << " CALL TO " << orto
+                     << " RINGS 9999\n";
+            } else if (find) {
+                cout << "AT " << callTime << " CALL TO " << orto << " RINGS "
+                     << to << "\n";
             }
         }
     }
