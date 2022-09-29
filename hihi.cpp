@@ -8,9 +8,9 @@ int main () {
 	//freopen("test.out","w", stdout);
 	//ios::sync_with_stdio(0), cin.tie(0);
 
-	queue<int> q;
-	q.push(1);
-	cout<<q.pop();
+	string a = "01";
+	int b = stoi(a);
+	cout<<b<<"\n";
 	return 0;
 }
 
