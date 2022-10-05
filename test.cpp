@@ -1,15 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+struct dot {
+    int x=0, y=0, dir=0;
+
+	dot();
+    dot(int a, int b, int c);
+};
+
 map <int,vector<pair<int,int>> , greater<int>> qq;
 
 int main () {
 	//freopen("test.in", "r", stdin);
 	//freopen("test.out","w", stdout);
-	ios::sync_with_stdio(0), cin.tie(0);
+	dot dots;
 
-	string str = "qwer";
-	cout<<str.find('q');
 	return 0;
 }
 
