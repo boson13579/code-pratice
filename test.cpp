@@ -1,68 +1,35 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-
-map<string, int> team;
-// vector<vector<string>> teams;
-
-struct player {
-    string num;
-    player *next;
-};
-
-player *teamID[1000];
-player *q = NULL;
-player *qrear = NULL;
-
-int qq = 1;
-
-int main() {
-    int team_num;
-    while (cin >> team_num and team_num != 0) {
-        cout<<"Scenario #"<<qq++;
-        q = NULL;
-        qrear = NULL;
-        for (int i = 0; i < team_num; i++) {
-            teamID[i] = NULL;
-            int n;
-            cin >> n;
-            while (n--) {
-                string temp;
-                cin >> temp;
-                team.emplace(temp, i);
+pair<string, int> data[1000010];
+void pq_sort(int max_val){
+    for(int j=max_val;j>1;j--){
+        int i=j;
+        while((i > 1)){
+            if(data[i].second > data[i>>1].second){
+                pair<string, int> tmp = data[i>>1];
+                data[i>>1] = data[i];
+                data[i] = tmp;
             }
+            i >>= 1;
         }
-        string tempstr;
-        cin.ignore();
-        while (getline(cin, tempstr) and tempstr != "STOP") {
-            if (tempstr[0] == 'E') {
-                stringstream ss(tempstr);
-                string trash, num;
-                ss >> trash >> num;
-                player *temp = new player;
-                temp->num = num;
-                temp->next = NULL;
-                if (teamID[team[num]] != NULL) {
-                    temp->next = teamID[team[num]]->next;
-                    teamID[team[num]]->next = temp;
-                    teamID[team[num]] = temp;
-                } else {
-                    if (q != NULL) {
-                        qrear->next = temp;
-                        qrear = temp;
-                        teamID[team[num]] = temp;
-                    } else {
-                        q = temp;
-                        qrear = temp;
-                        teamID[team[num]] = temp;
-                    }
-                }
-            } else {
-                cout << q->num << " ";
-                player *temp = q;
-                q = q->next;
-                free(temp);
-            }
-        }
+    }
+
+}
+int main(){
+    ios::sync_with_stdio(0), cin.tie(0);
+    int Case;
+    cin >> Case;
+
+    for(int i=1;i<=Case;i++){
+        cin >> data[i].first >> data[i].second;
+    }
+
+
+    cout << "First three things to do:" << endl;
+    for(int i=0;i<3;i++){
+        pq_sort(Case);
+        cout << data[1].first << endl;
+        data[1] = data[Case--];
     }
 
     return 0;
