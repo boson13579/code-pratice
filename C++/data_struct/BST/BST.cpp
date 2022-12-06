@@ -17,7 +17,7 @@ void traversal();
 int main() {
     // freopen("test.in", "r", stdin);
     // freopen("test.out","w", stdout);
-    // ios::sync_with_stdio(0), cin.tie(0);
+    ios::sync_with_stdio(0), cin.tie(0);
 
     string command;
     int a;
@@ -145,7 +145,7 @@ void deleten() {
             root = bededele->right;
             return;
         }
-        if (right)
+        if (right)/
             pre->right = bededele->right;
         else
             pre->left = bededele->right;
