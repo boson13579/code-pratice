@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-pair<int, string> heap[1000005];
+pair<int, string> heap[100];
 
 void in(pair<int, string> now);
 string out();
@@ -9,7 +9,7 @@ string out();
 int last = 0;
 
 int main() {
-    ios::sync_with_stdio(0), cin.tie(0);
+    // ios::sync_with_stdio(0), cin.tie(0);
 
     int a;
     cin >> a;
