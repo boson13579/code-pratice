@@ -1,16 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-string a="Tom";
-string b="Amy";
-
-int main () {
-	//freopen("test.in", "r", stdin);
-	//freopen("test.out","w", stdout);
-	ios::sync_with_stdio(0), cin.tie(0);
-
-	cout<<(a>b);
-
+int data[30][30];
+bool isFull(int a, int b, int c,int d){
+	for(int i=a;i<=c;i++){
+		for(int j=b;j<=d;j++){
+			if(!data[i][j]) return false;
+		}
+	}
+	return true;
+}
+int main() {
+	int a;
+	cout<<a<<endl;
 	return 0;
 }
-

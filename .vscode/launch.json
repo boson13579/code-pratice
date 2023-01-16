@@ -5,6 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
             "name": "C/C++: g++.exe",
             "type": "cppdbg",
             "request": "launch",
@@ -30,7 +38,5 @@
             ],
             "preLaunchTask": "C/C++: g++.exe 建置使用中檔案"
         }
-        
-
     ]
 }
