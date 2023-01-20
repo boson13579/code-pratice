@@ -15,7 +15,7 @@ int main() {
     vector<int> arr = {0, 1};
 
     for (int i = 1; i < n; i++)
-        for (int t = (1 << i) - 1; t >= 0; t--)
+        for (int t = arr.size()-1 ; t >= 0; t--)
             arr.emplace_back(arr[t] | (1 << i));
 
     for (auto i : arr) print(n, i);
