@@ -1,14 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int parent[100005];
+bool v[100005];
 
-vector<pair<int, int>> ans;
+vector<int> ans;
 
-int findParent(int n){
-	if(parent[n] = n)
-		return n;
-	return findParent(parent[n]);
+vector<vector<int>> road;
+
+void dfs(int i) {
+    v[i] = true;
+    for (auto t : road[i])
+        if (!v[t]) dfs(t);
 }
 
 int main() {
@@ -17,12 +19,25 @@ int main() {
     int n, m, fr, to;
     cin >> n >> m;
 
-    for (int i = 0; i <= n; i++) parent[i] = i;
+    vector<int> temp;
 
+    for (int i = 1; i <= n; i++) road.emplace_back(temp);
     for (int i = 0; i < m; i++) {
         cin >> fr >> to;
-
+        road[fr].emplace_back(to);
+        road[to].emplace_back(fr);
     }
 
+    for (int i = 1; i <= n; i++) {
+        if (!v[i]) {
+            ans.emplace_back(i);
+            dfs(i);
+        }
+    }
+
+    cout << ans.size() - 1 << "\n";
+    for (int i = 0; i < ans.size() - 1; i++) {
+        cout << ans[i] << " " << ans[i + 1] << "\n";
+    }
     return 0;
 }

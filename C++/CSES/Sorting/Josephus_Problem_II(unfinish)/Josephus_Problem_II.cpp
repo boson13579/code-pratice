@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// keyword BIT or gnu_pbds indexed_set
+
 vector<int> children;
 
 int main() {
@@ -18,7 +20,5 @@ int main() {
         children[now] = 0;
     }
 
-	
- 
     return 0;
 }
