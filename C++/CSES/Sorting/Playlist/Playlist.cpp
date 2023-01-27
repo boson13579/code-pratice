@@ -12,8 +12,8 @@ int main() {
     for (int i = 0; i < n; i++) {
         cin >> temp;
         start = max(start, mp[temp]);
-        ans = max(ans, i - start + 1);
-        mp[temp] = i + 1;
+        ans = max(ans, i - start);
+        mp[temp] = i;
     }
 
     cout << ans << "\n";

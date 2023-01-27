@@ -1,24 +1,27 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-int main()
-{
-    int number, temp;
-    cin >> number;
+int DP[1000005];
 
-    int count = 0;
-    for (int i = 1; i <= number; i++)
-    {   
-        cout<<i<<"\n";
-        // temp = i;
-        while (i % 5 == 0)
-        {
-            count += 1;
-            i /= 5;
-        }
-    }
+int fibo(int n) {
 
-    cout << count << endl;
+	if(DP[n]!=0)
+		return DP[n];
+	
+	DP[n] = fibo(n-1)+fibo(n-2);
+    return DP[n];
+}
+
+int main() {
+
+
+    // freopen("test.in", "r", stdin);
+    // freopen("test.out","w", stdout);
+    // ios::sync_with_stdio(0), cin.tie(0);
+	int n;
+	DP[0] = 1;
+	DP[1] = 1;
+    while (cin >> n) cout << fibo(n);
 
     return 0;
 }

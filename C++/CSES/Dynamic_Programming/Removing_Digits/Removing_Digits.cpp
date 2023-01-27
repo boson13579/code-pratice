@@ -4,6 +4,7 @@ using namespace std;
 int DP[1000005];
 
 int dfs(int n) {
+    
     if (DP[n] != 0 or n == 0) return DP[n];
 
     DP[n] = n;

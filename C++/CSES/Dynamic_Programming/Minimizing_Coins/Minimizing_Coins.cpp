@@ -11,7 +11,7 @@ int main() {
     int n, sum, temp;
     cin >> n >> sum;
 
-    for (int i = 0; i <= sum; i++) DP[i] = 2147483640;
+    fill(DP,DP+n+1,2147483640);
 
     for (int i = 0; i < n; i++) {
         cin >> temp;

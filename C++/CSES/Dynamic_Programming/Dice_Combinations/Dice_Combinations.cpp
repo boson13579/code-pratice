@@ -21,8 +21,6 @@ int main() {
     ios::sync_with_stdio(0), cin.tie(0);
 
     DP[0] = 1;
-    DP[1] = 1;
-    DP[2] = 2;
 
     int a;
     cin >> a;
