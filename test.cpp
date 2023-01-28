@@ -1,27 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-int DP[1000005];
-
-int fibo(int n) {
-
-	if(DP[n]!=0)
-		return DP[n];
-	
-	DP[n] = fibo(n-1)+fibo(n-2);
-    return DP[n];
-}
-
+int DP[100010];
 int main() {
+    int n, a, sum = 0;
+    string ans, tmp;
+    vector<int> v;
+    cin >> n;
+    DP[0] = 1;
+    for (int i = 0; i < n; i++) {
+        cin >> a;
+        sum += a;
+        v.push_back(a);
+    }
 
+    sort(v.begin(), v.end());
 
-    // freopen("test.in", "r", stdin);
-    // freopen("test.out","w", stdout);
-    // ios::sync_with_stdio(0), cin.tie(0);
-	int n;
-	DP[0] = 1;
-	DP[1] = 1;
-    while (cin >> n) cout << fibo(n);
+    for (auto vi : v) {
+        for (int i = sum; i - vi >= 0; i--) {
+            if (DP[i - vi] == 1) DP[i] = 1;
+        }
+    }
 
-    return 0;
+    a = 0;
+    for (int i = 1; i <= sum; i++) {
+        if (DP[i]) a++;
+    }
+    cout << a << endl;
+    for (int i = 1; i <= sum; i++) {
+        if (DP[i]) cout << i;
+        if (DP[i] && i != sum) cout << " ";
+    }
 }

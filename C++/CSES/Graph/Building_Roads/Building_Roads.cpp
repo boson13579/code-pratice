@@ -3,9 +3,7 @@ using namespace std;
 
 bool v[100005];
 
-vector<int> ans;
-
-vector<vector<int>> road;
+vector<int> ans, road[100005];
 
 void dfs(int i) {
     v[i] = true;
@@ -19,9 +17,6 @@ int main() {
     int n, m, fr, to;
     cin >> n >> m;
 
-    vector<int> temp;
-
-    for (int i = 1; i <= n; i++) road.emplace_back(temp);
     for (int i = 0; i < m; i++) {
         cin >> fr >> to;
         road[fr].emplace_back(to);
@@ -36,8 +31,8 @@ int main() {
     }
 
     cout << ans.size() - 1 << "\n";
-    for (int i = 0; i < ans.size() - 1; i++) {
+    for (int i = 0; i < ans.size() - 1; i++)
         cout << ans[i] << " " << ans[i + 1] << "\n";
-    }
+
     return 0;
 }
