@@ -16,8 +16,11 @@ int main() {
 
     for (int i = 0; i <= a.size(); i++) {
         for (int t = 0; t <= b.size(); t++) {
+
             if (i) DP[i][t] = min(DP[i][t], DP[i - 1][t] + 1);
+            
             if (t) DP[i][t] = min(DP[i][t], DP[i][t - 1] + 1);
+
             if (i and t)
                 DP[i][t] =
                     min(DP[i][t], DP[i - 1][t - 1] + (a[i - 1] != b[t - 1]));
