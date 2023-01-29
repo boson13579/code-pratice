@@ -17,11 +17,20 @@ int main() {
         arr.emplace_back(temp);
     }
 
-	for(int i=0 ; i<=u ; i++) DP[0][i] = 1;
-    for (int i = 1; i <= n; i++) {
-        if (arr[i - 1] != 0)
-            for (int t = 1; t <= u; t++) DP[i][t] = DP[i - 1][t];
+    if (arr[0] == 0)
+        for (int i = 1; i <= u; i++) DP[1][i] = 1;
+    else
+        DP[1][arr[0]] = 1;
 
+    for (int i = 2; i <= n; i++) {
+        if (arr[i - 1] != 0) {
+            DP[i][arr[i - 1]] += DP[i - 1][arr[i - 1] - 1];
+            DP[i][arr[i - 1]] %= MOD;
+            DP[i][arr[i - 1]] += DP[i - 1][arr[i - 1]];
+            DP[i][arr[i - 1]] %= MOD;
+            DP[i][arr[i - 1]] += DP[i - 1][arr[i - 1] + 1];
+            DP[i][arr[i - 1]] %= MOD;
+        }
         else {
             for (int t = 1; t <= u; t++) {
                 DP[i][t] += DP[i - 1][t - 1];
@@ -35,7 +44,10 @@ int main() {
     }
 
     int ans = 0;
-    for (int i = 0; i <= u; i++) ans = max(ans, DP[n][i]);
+    for (int i = 0; i <= u; i++) {
+        ans += DP[n][i];
+        ans %= MOD;
+    }
 
     cout << ans << "\n";
     return 0;
