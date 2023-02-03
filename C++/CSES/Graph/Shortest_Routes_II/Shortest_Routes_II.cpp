@@ -22,7 +22,7 @@ int main() {
             pq;
 
         pq.emplace(0, f);
-
+		
         while (!pq.empty()) {
             pair<long long, int> now = pq.top();
             pq.pop();

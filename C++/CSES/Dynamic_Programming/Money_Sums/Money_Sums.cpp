@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> money;
 set<int> sum;
 
 int main() {
@@ -9,15 +8,12 @@ int main() {
 
     int n, temp;
     cin >> n;
+    sum.emplace(0);
     while (n--) {
         cin >> temp;
-        money.emplace_back(temp);
+        for (auto t = sum.rbegin(); t != sum.rend(); t++)
+            sum.emplace(*t + temp);
     }
-
-    sum.emplace(0);
-
-    for (auto i : money)
-        for (auto t = sum.rbegin(); t != sum.rend(); t++) sum.emplace(*t + i);
 
     cout << sum.size() - 1 << "\n";
     for (auto i = next(sum.begin()); i != sum.end(); i++) cout << *i << " ";
