@@ -37,7 +37,7 @@ struct BIT {
     }
 };
 int main() {
-    // ios::sync_with_stdio(0), cin.tie(0);
+    ios::sync_with_stdio(0), cin.tie(0);
 
     int n, skip;
     cin >> n >> skip;
@@ -51,8 +51,9 @@ int main() {
     int now = (skip % n);
 
     while (n--) {
-        cout << b.bs(now + 1) << " ";
-        b.add(-1, b.bs(now + 1));
+        int pos = b.bs(now + 1);
+        cout << pos << " ";
+        b.add(-1, pos);
         if (n) now = (now % n + skip) % n;
     }
 

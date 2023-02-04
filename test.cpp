@@ -1,38 +1,59 @@
-/*
-Problem Name: Josephus Problem II
-Problem Link: https://cses.fi/problemset/task/2163
-Author: Sachin Srivastava (mrsac7)
-*/
 #include <bits/stdc++.h>
-
-#include <ext/pb_ds/assoc_container.hpp>
-using namespace __gnu_pbds;
 using namespace std;
-
-typedef tree<int, null_type, less<int>, rb_tree_tag,
-             tree_order_statistics_node_update>
-    indexed_set;
-#define int long long
-#define endl '\n'
-
-signed main() {
-// ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-#ifdef LOCAL
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
-
-    indexed_set s;
-    int n, k;
-    cin >> n >> k;
-    for (int i = 1; i <= n; i++) s.insert(i);
-
-    int ind = k % n;
-    while (n--) {
-        cout << n << " " << ind << " ";
-        auto y = s.find_by_order(ind);
-        cout << *y << '\n';
-        s.erase(y);
-        if (n) ind = (ind % n + k) % n;
+ 
+const int N = 1e5 + 5;
+ 
+vector <int> g[N];
+int m, topo[N];
+bool visited[N], in_dfs[N];
+ 
+inline int read_int() {
+    register char c;
+    while (!isdigit(c = getchar_unlocked()));
+    int x = c - 48;
+    while (isdigit(c = getchar_unlocked()))
+        x = (x << 1) + (x << 3) + c - 48;
+    return x;
+}
+ 
+inline void write_int(int x) {
+    if (x > 9)
+        write_int(x / 10);
+    putchar_unlocked(x%10 + 48);
+}
+ 
+void dfs(int u) {
+    visited[u] = in_dfs[u] = true;
+ 
+    for (int v: g[u])
+        if (!visited[v])
+            dfs(v);
+        else if (in_dfs[v]) {
+            puts("IMPOSSIBLE");
+            exit(0);
+        }
+ 
+    in_dfs[u] = false;
+    topo[m++] = u;
+}
+ 
+int main() {
+    int n = read_int();
+    m = read_int();
+ 
+    while (m--) {
+        int u = read_int(), v = read_int();
+        g[u].push_back(v);
     }
+ 
+    m = 0;
+    for (int u = 1; u <= n; ++u)
+        if (!visited[u])
+            dfs(u);
+ 
+    for (int i = m - 1; i >= 0; --i) {
+        write_int(topo[i]);
+        putchar_unlocked(32);
+    }
+ 
 }
