@@ -1,59 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
- 
-const int N = 1e5 + 5;
- 
-vector <int> g[N];
-int m, topo[N];
-bool visited[N], in_dfs[N];
- 
-inline int read_int() {
-    register char c;
-    while (!isdigit(c = getchar_unlocked()));
-    int x = c - 48;
-    while (isdigit(c = getchar_unlocked()))
-        x = (x << 1) + (x << 3) + c - 48;
-    return x;
-}
- 
-inline void write_int(int x) {
-    if (x > 9)
-        write_int(x / 10);
-    putchar_unlocked(x%10 + 48);
-}
- 
-void dfs(int u) {
-    visited[u] = in_dfs[u] = true;
- 
-    for (int v: g[u])
-        if (!visited[v])
-            dfs(v);
-        else if (in_dfs[v]) {
-            puts("IMPOSSIBLE");
-            exit(0);
-        }
- 
-    in_dfs[u] = false;
-    topo[m++] = u;
-}
- 
+char unsigned tab[1000005]{};
 int main() {
-    int n = read_int();
-    m = read_int();
- 
-    while (m--) {
-        int u = read_int(), v = read_int();
-        g[u].push_back(v);
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    int n, x, i;
+    short a;
+
+    for (i = 2; i <= 500000; i++) {
+        for (int j = i; j <= 1000000; j += i) {
+            tab[j]++;
+        }
     }
- 
-    m = 0;
-    for (int u = 1; u <= n; ++u)
-        if (!visited[u])
-            dfs(u);
- 
-    for (int i = m - 1; i >= 0; --i) {
-        write_int(topo[i]);
-        putchar_unlocked(32);
+
+    cin >> n;
+    for (int j = 0; j < n; j++) {
+        cin >> x;
+        a = 1;
+        if (x >= i) {
+            a++;
+        }
+        cout << tab[x] + a << "\n";
     }
- 
+
+    return 0;
 }
