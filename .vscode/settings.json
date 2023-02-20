@@ -85,10 +85,17 @@
         "ciso646": "cpp",
         "cfloat": "cpp",
         "climits": "cpp",
-        "stacktrace": "cpp"
+        "stacktrace": "cpp",
+        "barrier": "cpp",
+        "expected": "cpp",
+        "source_location": "cpp",
+        "latch": "cpp",
+        "semaphore": "cpp",
+        "spanstream": "cpp",
+        "syncstream": "cpp"
     },
 
-    "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.errorSquiggles": "disabled",
     "java.dependency.syncWithFolderExplorer": false,
     "java.silentNotification": true,
     "java.debug.settings.console": "integratedTerminal",
@@ -97,7 +104,7 @@
         "editor.insertSpaces": true
     },
     "java.debug.settings.enableRunDebugCodeLens": false,
-    "C_Cpp.intelliSenseEngineFallback": "Enabled",
+    "C_Cpp.intelliSenseEngineFallback": "enabled",
 
     "editor.formatOnSave": true,
     "prettier.singleQuote": true,

@@ -1,29 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
-char unsigned tab[1000005]{};
+
+void solve(int n, int a, int b, int c) {
+    
+    if (!n) return;
+
+    solve(n - 1, a, c, b);
+    cout << a << " " << c << "\n";
+    solve(n - 1, b, a, c);
+}
+
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
+    ios_base::sync_with_stdio(0), cin.tie(0);
 
-    int n, x, i;
-    short a;
-
-    for (i = 2; i <= 500000; i++) {
-        for (int j = i; j <= 1000000; j += i) {
-            tab[j]++;
-        }
-    }
-
+    int n;
     cin >> n;
-    for (int j = 0; j < n; j++) {
-        cin >> x;
-        a = 1;
-        if (x >= i) {
-            a++;
-        }
-        cout << tab[x] + a << "\n";
-    }
-
+    cout << (1 << n) - 1 << "\n";
+    solve(n, 1, 2, 3);
     return 0;
 }
