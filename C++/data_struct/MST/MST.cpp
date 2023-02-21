@@ -1,10 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<pair<int,int>> line[2010];
+vector<pair<int, int>> line[2010];
 
-priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>>
-    pq;
+priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
 
 set<int> unions;
 int n, m, from, to, dis;
@@ -35,7 +34,7 @@ int main() {
         ans += pq.top().first;
         unions.emplace(now);
         pq.pop();
-		for(auto i:line[now]) pq.emplace(i);
+        for (auto i : line[now]) pq.emplace(i);
     }
 
     cout << ans;
