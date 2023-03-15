@@ -2,8 +2,8 @@
 using namespace std;
 int MOD = 1e9 + 7;
 
-vector<long long> fact(4005 + 1);
-vector<long long> refact(4005 + 1);
+vector<long long> fact(40005 + 1);
+vector<long long> refact(40005 + 1);
 
 long long qpow(long long a, long long b) {
 	long long ret = 1;
@@ -20,12 +20,12 @@ long long qpow(long long a, long long b) {
 void init() {
 
 	fact[0] = 1;
-	for (long long i = 1; i < 4005; i++)
+	for (long long i = 1; i < 40005; i++)
 		fact[i] = (fact[i - 1] * i) % MOD;
 
-	refact[4004] = qpow(4004, MOD - 2);
-	for (long long i = 4003; i >= 1; i--)
-		refact[i] = refact[i + 1] * i % MOD;
+	refact[40004] = qpow(fact[40004], MOD - 2);
+	for (long long i = 40004; i >= 1; i--)
+		refact[i - 1] = refact[i] * i % MOD;
 
 }
 
@@ -64,9 +64,9 @@ int main() {
 
 		function<int(int)> dfs = [&](int x) -> int {
 
-			per[x] = fact[size[x]];
-			for (auto i : v[x])
-				per[x] = per[x] * refact[size[i]] % MOD * dfs(i) % MOD;
+			per[x] = fact[size[x] - 1];
+			for (auto q : v[x])
+				per[x] = per[x] * refact[size[q]] % MOD * dfs(q) % MOD;
 			return per[x];
 		};
 
