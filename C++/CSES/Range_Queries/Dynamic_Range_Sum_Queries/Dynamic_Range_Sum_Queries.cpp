@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
 #define ll long long
 #define cl(x) (2*x + 1)
-#define cr(x) (2*x)
+#define cr(x) (2*(x + 1))
+#define int long long
 
 using namespace std;
 
@@ -24,8 +25,8 @@ struct seg {
 		if (lazy[i]) {
 			v[i] += lazy[i] * (r - l + 1);
 			if (l != r) {
-				lazy[cl(i)] = lazy[i];
-				lazy[cr(i)] = lazy[i];
+				lazy[cl(i)] += lazy[i];
+				lazy[cr(i)] += lazy[i];
 			}
 			lazy[i] = 0;
 		}
@@ -45,22 +46,22 @@ struct seg {
 	void update(int i, int l, int r, int nl, int nr, int x) {
 		push(i, l, r);
 
-		if (l <= nl and r >= nr) {
+		if (l >= nl and r <= nr) {
 			lazy[i] += x;
 			return;
 		}
 
 		int mid = (l + r) / 2;
 		if (nl <= mid)
-			update(cr(i), l, mid, nl,nr, x);
+			update(cl(i), l, mid, nl, nr, x);
 		if (nr > mid)
-			update(cl(i), mid + 1, r, nl,nr, x);
+			update(cr(i), mid + 1, r, nl, nr, x);
 		pull(i, l, r);
 	}
 
 	ll query(int i, int l, int r, int nl, int nr) {
 		push(i, l, r);
-		if (l <= nl and r >= nr) return v[i];
+		if (l >= nl and r <= nr) return v[i];
 
 		int mid = (l + r) / 2;
 
@@ -75,7 +76,7 @@ struct seg {
 	}
 };
 
-int main() {
+signed main() {
 	ios::sync_with_stdio(0), cin.tie(0);
 
 	int n, q;
@@ -84,20 +85,18 @@ int main() {
 	for (int i = 0; i < n; i++) cin >> arr[i];
 
 	seg segtree(n);
-
-	segtree.build(arr, 0, 0, n << 2);
+	segtree.build(arr, 0, 0, n - 1);
 
 	for (int i = 0, a, b, c; i < q; i++) {
-		cin >> a >> b;
+		cin >> a;
 		if (a == 1) {
 			cin >> a >> b >> c;
-			segtree.update(0, 0, n << 2, a, b, c);
+			segtree.update(0, 0, n - 1, a - 1, b - 1, c);
 		}
 		else {
 			cin >> a;
-			segtree.query(0, 0, n << 2, a, a);
+			cout << segtree.query(0, 0, n - 1, a - 1, a - 1) << "\n";
 		}
 	}
-
 	return 0;
 }
