@@ -51,7 +51,7 @@ signed main() {
 			ans[i.ind] = now;
 	}
 
-	sort(ans.begin(), ans.end(), [](auto a, auto b) {return a.first < b.first;});
+	// sort(ans.begin(), ans.end(), [](auto a, auto b) {return a.first < b.first;});
 
 	for (auto i : ans)
 		if (i.second)
