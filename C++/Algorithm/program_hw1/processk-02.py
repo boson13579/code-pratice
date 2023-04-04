@@ -2,8 +2,6 @@ import os
 import numpy as np
 import numpy.random
 from pylab import *
-from subprocess import Popen
-from tqdm import trange
 
 path = "C:/Users/boson/Desktop/code/code-pratice/C++/Algorithm/program_hw1/karatest1_1419-O2.out"
 
