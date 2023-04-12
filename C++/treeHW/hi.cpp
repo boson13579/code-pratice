@@ -31,7 +31,7 @@ class Point {
 };
 
 int Point ::count = 0;
-const string Point ::comment = "fuck";
+const string Point ::comment = "123";
 
 void Point ::setDim(int a) {
     this->dim = a;
@@ -65,7 +65,7 @@ Point ::Point(const Point &a) {
     count++;
 }
 
-Point ::~Point() { count--; }
+Point ::~Point() { count--; cout<<this -> dim << this -> val[0]<< "destruct\n"; }
 
 int Point ::getDim() const { return this->dim; }
 
