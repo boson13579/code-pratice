@@ -69,13 +69,11 @@ vector<int>& shift(vector<int>& a, int p) {
 
 vector<int> kmul(vector<int>& a, vector<int>& b) {
 
-	// cerr << "我還活著\n";
 	const int n = a.size();
 	const int m = b.size();
-	// cerr << a.size() << " " << b.size() << "\n";
 	if (n < threadhold and m < threadhold) return mul(a, b);
 
-	const int mid = min(max(a.size(), b.size()) / 2, min(a.size(), b.size()));
+	const int mid = min(max(n, m) / 2, min(n, m));
 
 	vector<int> x = vector<int>(a.begin(), a.begin() + mid),
 		w = vector<int>(a.begin() + mid, a.end()),
@@ -105,29 +103,28 @@ void print(vector<int>& a) {
 
 int main() {
 
-	freopen("test3.in", "r", stdin);
-	freopen("karatest3_1419.out", "w", stdout);
-	ios::sync_with_stdio(0), cin.tie(0);
+	// freopen("test3.in", "r", stdin);
+	// freopen("karatest3_1419.out", "w", stdout);
+	// ios::sync_with_stdio(0), cin.tie(0);
 
 	string n1, n2;
-	int n = 1;
-	int s = 5000;
-	while (cin >> n1 >> n2) {
+	int n = 200;
+	cin >> n1 >> n2;
 
-		vector<int> a = stov(n1);
-		vector<int> b = stov(n2);
-		vector<int> temp;
-		auto start = high_resolution_clock::now();
-		for (int i = 0; i < n; i++) {
-			temp = kmul(a, b);
-		}
-		auto end = high_resolution_clock::now();
-		auto during = duration_cast<nanoseconds>(end - start);
+	vector<int> a = stov(n1);
+	vector<int> b = stov(n2);
+	vector<int> temp;
 
-		// print(temp);
-		cout << s << " " << during.count() / n << "\n";
-		s += 100;
+	auto start = high_resolution_clock::now();
+	for (int i = 0; i < n; i++) {
+		temp = kmul(a, b);
 	}
+	auto end = high_resolution_clock::now();
+	auto during = duration_cast<nanoseconds>(end - start);
+
+	print(temp);
+	cout << " " << during.count() / n << "\n";
+
 	return 0;
 
 }

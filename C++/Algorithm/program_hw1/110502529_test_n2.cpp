@@ -43,31 +43,28 @@ void print(vector<int> a) {
 
 int main() {
 
-    freopen("test3.in", "r", stdin);
-    freopen("n2test3.out", "w", stdout);
-    ios::sync_with_stdio(0), cin.tie(0);
+    // freopen("test3.in", "r", stdin);
+    // freopen("n2test3.out", "w", stdout);
+    // ios::sync_with_stdio(0), cin.tie(0);
 
     string n1, n2;
-    int n = 1;
-    int trash = 2;
-    while (cin >> n1 >> n2) {
+    int n = 200;
+    cin >> n1 >> n2;
 
-        vector<int> a = stov(n1);
-        vector<int> b = stov(n2);
-        vector<int> temp;
+    vector<int> a = stov(n1);
+    vector<int> b = stov(n2);
+    vector<int> temp;
 
-        auto start = high_resolution_clock::now();
-        for (int i = 0; i < n; i++) {
-            // cin >> n1 >> n2;
-            temp = mul(a, b);
-        }
-        auto end = high_resolution_clock::now();
-        auto during = duration_cast<nanoseconds>(end - start);
-
-        // print(temp);
-        cout << trash << " " << during.count() / n << "\n";
-        trash += 100;
+    auto start = high_resolution_clock::now();
+    for (int i = 0; i < n; i++) {
+        temp = mul(a, b);
     }
+    auto end = high_resolution_clock::now();
+    auto during = duration_cast<nanoseconds>(end - start);
+
+    print(temp);
+    cout << " " << during.count() / n << "\n";
+
 
     return 0;
 
