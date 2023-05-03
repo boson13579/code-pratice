@@ -68,12 +68,6 @@ int main() {
 
 	sort(ans.begin(), ans.end(), cmp);
 
-	int z = 0, x = 3;
-	for (auto i : ans) {
-		if (i.l != z or i.r != x) cout << "\n";
-		cout << i.l << " " << i.i << " " << i.r << " " << i.n << "\n";
-		z = i.l, x = i.r;
-	}
 
 	cout << ans.size() << "\n";
 
