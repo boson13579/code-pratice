@@ -12,6 +12,7 @@ bool cmp(array<int, 4> a, array<int, 4> b) {
 
 int main() {
 
+    ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     // init combination
     for (int i = 0; i < 1002; i++) {
         table[0][i] = 1;
@@ -48,9 +49,9 @@ int main() {
         for (int i = 0; i <= numBlock; i++) {
             dp[block[i][0]][block[i][1]] = table[block[i][0]][block[i][1]];
             for (int t = 0; t < i; t++) {
-                if (block[t][2] > block[i][0] or block[t][3] > block[i][1]) continue;;
+                if (block[t][2] > block[i][0] or block[t][3] > block[i][1]) continue;
                 dp[block[i][0]][block[i][1]] -= dp[block[t][0]][block[t][1]] * table[block[i][0] - block[t][2]][block[i][1] - block[t][3]];
-                if (dp[block[i][0]][block[i][1]] < 0) dp[block[i][0]][block[i][1]] += (-(dp[block[i][0]][block[i][1]] / 2552) + 1) * 2552;
+                dp[block[i][0]][block[i][1]] = ((dp[block[i][0]][block[i][1]] % 2552) + 2552) % 2552;
             }
         }
 
