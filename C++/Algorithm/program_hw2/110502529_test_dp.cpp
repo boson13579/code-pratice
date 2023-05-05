@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+using namespace std::chrono;
 
 int table[1005][1005];
 
@@ -11,6 +12,9 @@ bool cmp(array<int, 4> a, array<int, 4> b) {
 }
 
 int main() {
+
+    freopen("in10000.txt", "r", stdin);
+    freopen("dpout.txt", "w", stdout);
 
     ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     // init combination
@@ -27,35 +31,42 @@ int main() {
     }
 
     int W, H, K;
-    cin >> W >> H >> K;
+    while (cin >> W >> H >> K) {
 
-    while (K--) {
-        int numBlock;
-        cin >> numBlock;
+        auto st = high_resolution_clock::now();
+        while (K--) {
+            int numBlock;
+            cin >> numBlock;
 
-        vector<vector<int>> dp(W + 1, vector<int>(H + 1, 0));
-        vector<array<int, 4>> block(numBlock);
+            vector<int> dp(numBlock + 1);
+            vector<array<int, 4>> block(numBlock);
 
-        for (int i = 0; i < numBlock; i++) {
-            cin >> block[i][0] >> block[i][1] >> block[i][2] >> block[i][3];
-        }
-        block.push_back({ W, H, W, H });
-
-        sort(block.begin(), block.end(), cmp);
-
-        //block[i][0] block[i][1] means ith block start 
-        //block[i][2] block[i][3] means ith block end
-
-        for (int i = 0; i <= numBlock; i++) {
-            dp[block[i][0]][block[i][1]] = table[block[i][0]][block[i][1]];
-            for (int t = 0; t < i; t++) {
-                if (block[t][2] > block[i][0] or block[t][3] > block[i][1]) continue;
-                dp[block[i][0]][block[i][1]] -= dp[block[t][0]][block[t][1]] * table[block[i][0] - block[t][2]][block[i][1] - block[t][3]];
-                dp[block[i][0]][block[i][1]] = ((dp[block[i][0]][block[i][1]] % 2552) + 2552) % 2552;
+            for (int i = 0; i < numBlock; i++) {
+                cin >> block[i][0] >> block[i][1] >> block[i][2] >> block[i][3];
             }
-        }
 
-        cout << dp[W][H] << "\n";
+            // st = high_resolution_clock::now();
+            block.push_back({ W, H, W, H });
+
+            sort(block.begin(), block.end(), cmp);
+
+            //block[i][0] block[i][1] means ith block start 
+            //block[i][2] block[i][3] means ith block end
+
+            for (int i = 0; i <= numBlock; i++) {
+
+                dp[i] = table[block[i][0]][block[i][1]];
+                for (int t = 0; t < i; t++) {
+                    if (block[t][2] > block[i][0] or block[t][3] > block[i][1]) continue;
+                    dp[i] -= dp[t] * table[block[i][0] - block[t][2]][block[i][1] - block[t][3]];
+                    dp[i] = ((dp[i] % 2552) + 2552) % 2552;
+                }
+            }
+            cout << dp[numBlock] << "\n";
+        }
+        auto ed = high_resolution_clock::now();
+        auto dt = duration_cast<nanoseconds>(ed - st);
+        cout << dt.count() << '\n';
     }
 
     return 0;
