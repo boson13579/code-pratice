@@ -13,7 +13,7 @@ int main() {
 
         vector<vector<int>> ans(W + 1, vector<int>(H + 1, 0));
         vector<vector<int>> block(W + 1, vector<int>(H + 1, 0));
-
+        
         for (int i = 0, a, b, c, d; i < numBlock; i++) {
             cin >> a >> b >> c >> d;
             if (a == c)

@@ -18,19 +18,23 @@ unordered_map<int, int> have_solved;
 
 int solve(int h, int w) {
     if (v.size()) {
-        if (have_solved.count(h * 1000 + w))
-            return have_solved[h * 1000 + w];
+        int position = (h << 10) + w;
+        if (have_solved.count(position))
+            return have_solved[position];
         obs tmp = v[v.size() - 1];
         v.pop_back();
-        int ans = solve(h, w);
-        if (h - tmp.a >= 0 && w - tmp.b >= 0)
-            ans += (p[tmp.a + tmp.v - 1][tmp.b - tmp.v] - solve(tmp.a + tmp.v - 1, tmp.b - tmp.v)) * p[h - tmp.a][w - tmp.b];
+        int ans = solve(h, w), h2 = h - tmp.a, w2 = w - tmp.b;
+        if (h2 >= 0 && w2 >= 0) {
+            int h1 = tmp.a + tmp.v - 1, w1 = tmp.b - tmp.v;
+            ans += (p[h1][w1] - solve(h1, w1)) * p[h2][w2];
+        }
+
         v.push_back(tmp);
 
         ans %= 2552;
         if (ans < 0)
             ans += 2552;
-        have_solved[h * 1000 + w] = ans;
+        have_solved[position] = ans;
         return ans;
     }
     return 0;
@@ -38,8 +42,8 @@ int solve(int h, int w) {
 
 int main() {
 
-    // freopen("in10000.txt", "r", stdin);
-    // freopen("testhu.txt", "w", stdout);
+    freopen("in10000.txt", "r", stdin);
+    freopen("testhu.txt", "w", stdout);
 
     ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 
@@ -74,7 +78,7 @@ int main() {
                 newobs->v = 0;
                 v.push_back(*newobs);
             }
-            if (b < d) {
+            else if (b < d) {
                 obs* newobs = new obs;
                 newobs->a = c;
                 newobs->b = d;
@@ -86,9 +90,9 @@ int main() {
         ans = p[h][w] - solve(h, w);
         if (ans < 0)
             ans += 2552;
-        cout << ans << "\n";
+        // cout << ans << "\n";
     }
-    // auto ed = high_resolution_clock::now();
-    // auto dt = duration_cast<nanoseconds>(ed - st);
-    // cout << dt.count() << '\n';
+    auto ed = high_resolution_clock::now();
+    auto dt = duration_cast<nanoseconds>(ed - st);
+    cout << dt.count() << '\n';
 }
