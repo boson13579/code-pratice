@@ -6,8 +6,8 @@ int ans[1005][1005], block[1005][1005];
 
 int main() {
 
-    freopen("in50-1000.txt", "r", stdin);
-    freopen("q150-1000out.txt", "w", stdout);
+    freopen("inhw1000-k1000-10000.txt", "r", stdin);
+    freopen("q1000-k1000-10000-100.txt", "w", stdout);
     ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     int W, H, K;
 
