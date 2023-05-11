@@ -4,16 +4,14 @@ using namespace std;
 struct element {
 	int d, to, from;
 
-	auto operator <=>(const element& other) const {
-		return d <=> other.d;
+	auto operator <(const element& other) const {
+		if (d != other.d)
+			return d > other.d;
+		return to < other.to;
 	}
 };
 
 int main() {
-	//freopen("test.in", "r", stdin);
-	//freopen("test.out","w", stdout);
-	ios::sync_with_stdio(0), cin.tie(0);
-
 	int n, m;
 	cin >> n >> m;
 
@@ -24,17 +22,9 @@ int main() {
 		v[a].emplace_back(b, c);
 		v[b].emplace_back(a, c);
 	}
-	auto cmp = [](element a, element b) {
-		return a.d > b.d;
-	};
 
-	priority_queue < element, vector<element>, decltype(cmp) > pq(cmp);
-
-	for (auto i : v[1]) {
-		pq.emplace(i.second, i.first, 1);
-	}
-
-	cout << "\n";
+	priority_queue < element, vector<element>> pq;
+	for (auto i : v[1]) pq.emplace(i.second, i.first, 1);
 
 	set<int> in;
 	in.emplace(1);
@@ -69,7 +59,6 @@ int main() {
 				pq.emplace(i.second, i.first, to);
 		}
 
-
 	}
 
 	return 0;
@@ -82,8 +71,8 @@ int main() {
 1 4 5
 2 3 5
 2 5 3
-3 5 6 
-3 4 5 
-3 6 4 
-4 6 2
+3 5 6
+3 4 5
+3 6 4
+4a 6 2
 5 6 6*/
