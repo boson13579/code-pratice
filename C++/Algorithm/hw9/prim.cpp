@@ -24,6 +24,7 @@ int main() {
 	}
 
 	priority_queue < element, vector<element>> pq;
+	
 	for (auto i : v[1]) pq.emplace(i.second, i.first, 1);
 
 	set<int> in;
@@ -74,5 +75,5 @@ int main() {
 3 5 6
 3 4 5
 3 6 4
-4a 6 2
+4 6 2
 5 6 6*/
