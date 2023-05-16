@@ -94,7 +94,8 @@
     "spanstream": "cpp",
     "syncstream": "cpp",
     "rope": "cpp",
-    "slist": "cpp"
+    "slist": "cpp",
+    "stdio.h": "c"
   },
 
   "C_Cpp.errorSquiggles": "disabled",
