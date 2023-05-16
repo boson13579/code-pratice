@@ -30,7 +30,7 @@ int main() {
 	for (int i = 0; i < N; i++) cin >> cache[i];
 
 	//pregenerate nextPos
-	unordered_map<int, int> pos;
+	gp_hash_table<int, int> pos;
 	for (int i = N - 1; i >= 0; i--) {
 		if (pos.find(cache[i]) == pos.end()) {
 			pos[cache[i]] = i;
@@ -43,7 +43,7 @@ int main() {
 	}
 
 	__gnu_pbds::priority_queue<node, decltype(cmp), pairing_heap_tag> pq(cmp);
-	unordered_map<int, __gnu_pbds::priority_queue<node>::point_iterator> pqPos;
+	gp_hash_table<int, __gnu_pbds::priority_queue<node>::point_iterator> pqPos;
 
 	for (int i = 0; i < N; i++) {
 		if (pqPos.find(cache[i]) != pqPos.end()) {
@@ -54,12 +54,12 @@ int main() {
 
 		cout << "miss\n";
 		if (pq.size() < K)
-			pqPos.emplace(cache[i], pq.push(node(i, cache[i], nextPos[i])));
+			pqPos[cache[i]] = pq.push(node(i, cache[i], nextPos[i]));
 		else {
 			cout << "evict " << pq.top().x << "\n";
 			pqPos.erase(pq.top().x);
 			pq.pop();
-			pqPos.emplace(cache[i], pq.push(node(i, cache[i], nextPos[i])));
+			pqPos[cache[i]] = pq.push(node(i, cache[i], nextPos[i]));
 		}
 	}
 
