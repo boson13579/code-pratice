@@ -13,8 +13,8 @@ struct node {
 };
 
 auto cmp = [](node& a, node& b) {
-	if (a.next != b.next) return a.next > b.next;
-	return a.i < b.i;
+	if (a.next != b.next) return a.next < b.next;
+	return a.i > b.i;
 };
 
 int main() {
