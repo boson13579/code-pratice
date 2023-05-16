@@ -2,6 +2,7 @@
 #include <bits/extc++.h>
 using namespace std;
 using namespace __gnu_pbds;
+using namespace std::chrono;
 #define MAX 10000005
 
 vector<int> cache;
@@ -18,8 +19,8 @@ auto cmp = [](node& a, node& b) {
 };
 
 int main() {
-	//freopen("test.in", "r", stdin);
-	//freopen("test.out","w", stdout);
+	freopen("test.in", "r", stdin);
+	freopen("test.out","w", stdout);
 	ios::sync_with_stdio(0), cin.tie(0);
 
 	int K, N;
@@ -29,6 +30,7 @@ int main() {
 	nextPos.resize(N);
 	for (int i = 0; i < N; i++) cin >> cache[i];
 
+	auto st = high_resolution_clock::now();
 	//pregenerate nextPos
 	gp_hash_table<int, int> pos;
 	for (int i = N - 1; i >= 0; i--) {
@@ -63,5 +65,10 @@ int main() {
 		}
 	}
 
+	auto ed = high_resolution_clock::now();
+	auto dt = duration_cast<nanoseconds>(ed - st);
+	cerr << dt.count() << '\n';
+	//14104375700
+	//16984697400
 	return 0;
 }

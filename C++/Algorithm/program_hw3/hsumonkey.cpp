@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+using namespace std::chrono;
 int b[10000000], nextb[10000000];
 
 auto cmp = [](pair<int, int> a, pair<int, int> b) {
@@ -9,11 +10,15 @@ auto cmp = [](pair<int, int> a, pair<int, int> b) {
 };
 
 int main() {
+    freopen("test.in", "r", stdin);
+	freopen("test.out","w", stdout);
     int n, k;
     cin >> n >> k;
     for (int i = 0; i < k; i++)
         cin >> b[i];
     unordered_map<int, int> next_rec_um;
+
+    auto st = high_resolution_clock::now();
     for (int i = k - 1; i >= 0; i--) {
         if (next_rec_um.count(b[i]))
             nextb[i] = next_rec_um[b[i]];
@@ -47,4 +52,9 @@ int main() {
         us.insert(b[i]);
         next_pos_key_um[nextb[i]] = make_pair(nextb[i], i);
     }
+
+    auto ed = high_resolution_clock::now();
+    auto dt = duration_cast<nanoseconds>(ed - st);
+    cerr << dt.count() << '\n';
+    return 0;
 }
