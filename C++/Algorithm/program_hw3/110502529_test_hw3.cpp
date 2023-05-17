@@ -20,7 +20,7 @@ auto cmp = [](node& a, node& b) {
 
 int main() {
 	freopen("test.in", "r", stdin);
-	freopen("test.out","w", stdout);
+	freopen("test.out", "w", stdout);
 	ios::sync_with_stdio(0), cin.tie(0);
 
 	int K, N;
@@ -50,7 +50,7 @@ int main() {
 	for (int i = 0; i < N; i++) {
 		if (pqPos.find(cache[i]) != pqPos.end()) {
 			cout << "hit\n";
-			pq.modify(pqPos[cache[i]], node(i, cache[i], nextPos[i]));
+			pq.modify(pqPos[cache[i]], node(*pqPos[cache[i]]).i, cache[i], nextPos[i]));
 			continue;
 		}
 
