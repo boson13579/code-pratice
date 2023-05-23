@@ -21,7 +21,6 @@ int main() {
     }
     
     auto print = [&]() {
-        //cout dis
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
                 if (dis[i][j] == INT_MAX)
