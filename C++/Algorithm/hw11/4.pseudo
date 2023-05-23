@@ -1,0 +1,5 @@
+targin algorithm 縮SCC O(V + E)
+遍歷 E* 連結所有SCC O(E*)
+圖會變有向無環圖 根據題目 O(f(V, E))
+
+
