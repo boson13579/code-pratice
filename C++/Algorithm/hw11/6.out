@@ -15,12 +15,13 @@ inf   2   0 inf inf  -8
 inf   7 inf inf   0 inf 
 inf   5  10 inf inf   0 
 
-  0 inf inf inf  -1 inf 
-  1   0 inf   2   0 inf 
-  3   2   0   4   2  -8 
- -4 inf inf   0  -5 inf 
-  8   7 inf   9   0 inf 
-  6   5  10   7   5   0 
+
+0 0 0 0 0 0 
+0 0 0 0 1 0 
+0 0 0 0 0 0 
+0 0 0 0 1 0 
+0 0 0 0 0 0 
+0 0 0 0 0 0 
 
   0 inf inf inf  -1 inf 
   1   0 inf   2   0 inf 
@@ -28,6 +29,29 @@ inf   5  10 inf inf   0
  -4 inf inf   0  -5 inf 
   8   7 inf   9   0 inf 
   6   5  10   7   5   0 
+
+
+0 0 0 0 0 0 
+0 0 0 0 1 0 
+2 0 0 2 2 0 
+0 0 0 0 1 0 
+2 0 0 2 0 0 
+2 0 0 2 2 0 
+
+  0 inf inf inf  -1 inf 
+  1   0 inf   2   0 inf 
+  3   2   0   4   2  -8 
+ -4 inf inf   0  -5 inf 
+  8   7 inf   9   0 inf 
+  6   5  10   7   5   0 
+
+
+0 0 0 0 0 0 
+0 0 0 0 1 0 
+2 0 0 2 2 0 
+0 0 0 0 1 0 
+2 0 0 2 0 0 
+2 0 0 2 2 0 
 
   0 inf inf inf  -1 inf 
  -2   0 inf   2  -3 inf 
@@ -35,6 +59,14 @@ inf   5  10 inf inf   0
  -4 inf inf   0  -5 inf 
   5   7 inf   9   0 inf 
   3   5  10   7   2   0 
+
+
+0 0 0 0 0 0 
+4 0 0 0 4 0 
+4 0 0 2 4 0 
+0 0 0 0 1 0 
+4 0 0 2 0 0 
+4 0 0 2 4 0 
 
   0   6 inf   8  -1 inf 
  -2   0 inf   2  -3 inf 
@@ -42,6 +74,14 @@ inf   5  10 inf inf   0
  -4   2 inf   0  -5 inf 
   5   7 inf   9   0 inf 
   3   5  10   7   2   0 
+
+
+0 5 0 5 0 0 
+4 0 0 0 4 0 
+4 0 0 2 4 0 
+0 5 0 0 1 0 
+4 0 0 2 0 0 
+4 0 0 2 4 0 
 
   0   6 inf   8  -1 inf 
  -2   0 inf   2  -3 inf 
@@ -50,4 +90,11 @@ inf   5  10 inf inf   0
   5   7 inf   9   0 inf 
   3   5  10   7   2   0 
 
-  
+
+0 5 0 5 0 0 
+4 0 0 0 4 0 
+6 6 0 6 6 0 
+0 5 0 0 1 0 
+4 0 0 2 0 0 
+4 0 0 2 4 0 
+

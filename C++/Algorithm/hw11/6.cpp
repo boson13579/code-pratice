@@ -8,6 +8,7 @@ int main() {
     int n, m;
     cin >> n >> m;
     vector<vector<int>> dis(n + 1, vector<int>(n + 1, INT_MAX));
+    vector<vector<int>> parent(n + 1, vector<int>(n + 1, 0));
 
     // init self to be 0
     for (int i = 1; i <= n; i++) {
@@ -18,8 +19,9 @@ int main() {
         int u, v, w;
         cin >> u >> v >> w;
         dis[u][v] = w;
+        // parent[u][v] = u;
     }
-    
+
     auto print = [&]() {
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
@@ -41,11 +43,24 @@ int main() {
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
                 if (dis[i][k] != INT_MAX and dis[k][j] != INT_MAX) {
-                    dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j]);
+                    if(dis[i][j] > dis[i][k] + dis[k][j]) {
+                        dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j]);
+                        parent[i][j] = k;
+                    }
+                    
                 }
             }
         }
         print();
+        // print parent
+        cout << "\n";
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                cout << parent[i][j] << " ";
+            }
+            cout << endl;
+        }
+        cout << "\n";
     }
 
     return 0;
