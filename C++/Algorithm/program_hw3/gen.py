@@ -1,8 +1,13 @@
 from random import randint as ri
-f = open('C:/Users/boson/Desktop/code/code-pratice/C++/Algorithm/program_hw3/test.in', 'w')
-f.write(str(ri(100,101)) + ' ')
-a = ri(10000000,10000001)
-f.writelines(str(a) + '\n')
+f = open('C:/Code/code-pratice/C++/Algorithm/program_hw3/test.k.in', 'w')
+for i in range(1000, 100000, 1000):
+    
+    # k set to 100
+    f.write(str(i) + ' ')
 
-for _ in range(0,a):
-    f.write(str(ri(1,10000)) + ' ')
+    f.writelines(str(50000) + '\n')
+
+    for _ in range(0,50000):
+        f.write(str(ri(1,1000)) + ' ')
+
+    f.write('\n')
