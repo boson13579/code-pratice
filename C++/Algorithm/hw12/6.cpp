@@ -4,6 +4,8 @@ using namespace std;
 
 int main() {
 
+    freopen("6.out", "w", stdout);
+
     int n, m;
     cin >> n >> m;
 
@@ -21,6 +23,26 @@ int main() {
         q.emplace(1, 1e9);
 
         while (!q.empty()) {
+
+            auto printq = [&]() {
+
+                cout << "Queue: \n";
+                int si = q.size();
+                for (int i = 0; i < si; i++) {
+                    cout << q.front().first << ' ' << q.front().second << '\n';
+                    q.push(q.front());
+                    q.pop();
+                }
+                cout << "----------\n";
+            };
+
+            printq();
+
+            cout << "Parents\n";
+            for (int i = 1; i <= n; i++)
+                cout << p[i] << ' ';
+            cout << "\n----------\n";
+
             auto [now, flow] = q.front();
             q.pop();
 
@@ -36,14 +58,21 @@ int main() {
         return 0;
 
     };
-    
+
+    int step = 1;
     int ans = 0, flow;
     while (flow = bfs()) {
 
         ans += flow;
         int cur = n;
+
+        cout << "step: " << step++ << '\n';
+        cout << "\nflow: " << flow << '\n';
+        vector<int> v;
+
         while (cur) {
             int from = p[cur];
+            v.emplace_back(cur);
             for (int i = 0; i < path[from].size(); i++)
                 if (path[from][i].first == cur)
                     path[from][i].second -= flow;
@@ -52,6 +81,13 @@ int main() {
                     path[cur][i].second += flow;
             cur = from;
         }
+
+        cout << "Path:\n";
+        reverse(v.begin(), v.end());
+        for (int i = 0; i < v.size(); i++)
+            cout << v[i] << (i == v.size() - 1 ? '\n' : ' ');
+        cout << "----------\n\n";
+
     }
 
     cout << ans << "\n";
