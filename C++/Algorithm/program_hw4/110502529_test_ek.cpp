@@ -1,57 +1,52 @@
 #include <bits/stdc++.h>
-#edfine int long long 
 
+long long path[5010][5010];
 using namespace std;
-signed main() {
+int main() {
     ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 
-    int n, source, sink, m;
-    cin >> n >> m>>source >> sink;
+    freopen("test.in", "r", stdin);
 
-    vector<pair<int, int>> path[n + 1];
+    int n, source, sink, m;
+    cin >> n >> source >> sink >> m;
+
     for (int i = 0, a, b, c; i < m; i++) {
         cin >> a >> b >> c;
-        path[a].emplace_back(b, c);
-        path[b].emplace_back(a, 0);
+        path[a][b] += c;
     }
 
     int p[n + 1];
     auto bfs = [&]() {
 
         memset(p, 0, sizeof(p));
-        cerr << sizeof (p) << endl;
-        queue<pair<int, int>> q;
+        queue<pair<int, long long>> q;
 
         q.emplace(source, 1e18);
         p[source] = source;
         while (!q.empty()) {
             auto [now, flow] = q.front();
             q.pop();
-            for (auto [x, dis] : path[now]) {
-                if (p[x] == 0 and dis > 0) {
-                    p[x] = now;
-                    if (x == sink)
-                        return min(flow, dis);
-                    q.emplace(x, min(flow, dis));
+            for (int i = 1; i <= n; i++) {
+                if (i != now and path[now][i] > 0 and p[i] == 0) {
+                    p[i] = now;
+                    if (i == sink)
+                        return min(flow, path[now][i]);
+                    q.emplace(i, min(flow, path[now][i]));
                 }
             }
         }
         return (long long)0;
     };
 
-    int ans = 0;
-    while (int flow = bfs()) {
+    long long ans = 0;
+    while (long long flow = bfs()) {
         ans += flow;
 
         int cur = sink, from;
         while (cur != source) {
             from = p[cur];
-            for (int i = 0; i < path[from].size(); i++)
-                if (path[from][i].first == cur)
-                    path[from][i].second -= flow;
-            for (int i = 0; i < path[cur].size(); i++)
-                if (path[cur][i].first == from)
-                    path[cur][i].second += flow;
+            path[from][cur] -= flow;
+            path[cur][from] += flow;
             cur = from;
         }
     }

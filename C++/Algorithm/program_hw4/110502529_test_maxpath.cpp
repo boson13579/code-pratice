@@ -1,29 +1,29 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+
+long long path[5010][5010];
 int main() {
     ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 
     int n, source, sink, m;
     cin >> n >> source >> sink >> m;
 
-    vector<pair<int, int>> path[n + 1];
     for (int i = 0, a, b, c; i < m; i++) {
         cin >> a >> b >> c;
-        path[a].emplace_back(b, c);
-        path[b].emplace_back(a, 0);
+        path[a][b] += c;
     }
 
     int p[n + 1];
     auto maxpath = [&]() {
 
         memset(p, 0, sizeof(p));
-        priority_queue<pair<int, int>, vector<pair<int, int>>, less<pair<int, int>>> pq;
-        int maxflow[n + 1];
+        priority_queue<pair<long long, int>, vector<pair<long long, int>>, less<pair<long long, int>>> pq;
+        long long maxflow[n + 1];
         memset(maxflow, 0, sizeof(maxflow));
-        maxflow[source] = 1e9;
+        maxflow[source] = 1e18;
 
-        pq.emplace(1e9, source);
+        pq.emplace(1e18, source);
 
         while (!pq.empty()) {
             auto [flow, now] = pq.top();
@@ -31,30 +31,26 @@ int main() {
 
             if (flow < maxflow[now]) continue;
 
-            for (auto [x, capacity] : path[now]) {
-                if (capacity > 0 and maxflow[x] < min(flow, capacity)) {
+            for (int x = 1; x <= n; x++) {
+                if (x != now and path[now][x] > 0 and p[x] == 0) {
                     p[x] = now;
-                    maxflow[x] = min(flow, capacity);
-                    pq.emplace(min(flow, capacity), x);
+                    maxflow[x] = min(flow, path[now][x]);
+                    pq.emplace(min(flow, path[now][x]), x);
                 }
             }
         }
         return maxflow[sink];
     };
 
-    int ans = 0;
-    while (int flow = maxpath()) {
+    long long ans = 0;
+    while (long long flow = maxpath()) {
         ans += flow;
 
         int cur = sink, from;
         while (cur != source) {
             from = p[cur];
-            for (int i = 0; i < path[from].size(); i++)
-                if (path[from][i].first == cur)
-                    path[from][i].second -= flow;
-            for (int i = 0; i < path[cur].size(); i++)
-                if (path[cur][i].first == from)
-                    path[cur][i].second += flow;
+            path[from][cur] -= flow;
+            path[cur][from] += flow;
             cur = from;
         }
     }
