@@ -1,17 +1,20 @@
 #include <bits/stdc++.h>
 
-long long path[5010][5010];
+long long path[105][105];
 using namespace std;
 int main() {
     ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 
-    freopen("test.in", "r", stdin);
+    // freopen("test.in", "r", stdin);
 
     int n, source, sink, m;
     cin >> n >> source >> sink >> m;
+    unordered_set<int> nei[n+1];
 
     for (int i = 0, a, b, c; i < m; i++) {
         cin >> a >> b >> c;
+        nei[a].insert(b);
+        nei[b].insert(a);
         path[a][b] += c;
     }
 
@@ -26,7 +29,7 @@ int main() {
         while (!q.empty()) {
             auto [now, flow] = q.front();
             q.pop();
-            for (int i = 1; i <= n; i++) {
+            for (int i: nei[now]) {
                 if (i != now and path[now][i] > 0 and p[i] == 0) {
                     p[i] = now;
                     if (i == sink)
