@@ -1,11 +1,12 @@
 #include <bits/stdc++.h>
+#edfine int long long 
 
 using namespace std;
-int main() {
+signed main() {
     ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 
     int n, source, sink, m;
-    cin >> n >> source >> sink >> m;
+    cin >> n >> m>>source >> sink;
 
     vector<pair<int, int>> path[n + 1];
     for (int i = 0, a, b, c; i < m; i++) {
@@ -18,9 +19,10 @@ int main() {
     auto bfs = [&]() {
 
         memset(p, 0, sizeof(p));
+        cerr << sizeof (p) << endl;
         queue<pair<int, int>> q;
 
-        q.emplace(source, 1e9);
+        q.emplace(source, 1e18);
         p[source] = source;
         while (!q.empty()) {
             auto [now, flow] = q.front();
@@ -28,13 +30,13 @@ int main() {
             for (auto [x, dis] : path[now]) {
                 if (p[x] == 0 and dis > 0) {
                     p[x] = now;
-                    if (x == n)
+                    if (x == sink)
                         return min(flow, dis);
                     q.emplace(x, min(flow, dis));
                 }
             }
         }
-        return 0;
+        return (long long)0;
     };
 
     int ans = 0;
