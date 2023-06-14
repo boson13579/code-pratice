@@ -24,13 +24,14 @@ int main() {
         long long maxflow[n + 1];
         memset(maxflow, 0, sizeof(maxflow));
 
-        pq.emplace(1e18, source);
-
+        maxflow[source] = LONG_LONG_MAX;
+        pq.emplace(LONG_LONG_MAX, source);
+        
         while (!pq.empty()) {
             auto [flow, now] = pq.top();
             pq.pop();
 
-            if (flow < maxflow[now]) continue;
+            if (flow != maxflow[now]) continue;
 
             for (int x : nei[now]) {
                 if (path[now][x] > 0 and maxflow[x] < min(flow, path[now][x])) {

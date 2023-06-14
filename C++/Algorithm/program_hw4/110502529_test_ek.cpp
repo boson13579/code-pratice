@@ -24,13 +24,13 @@ int main() {
         memset(p, 0, sizeof(p));
         queue<pair<int, long long>> q;
 
-        q.emplace(source, 1e18);
+        q.emplace(source, LONG_LONG_MAX);
         p[source] = source;
         while (!q.empty()) {
             auto [now, flow] = q.front();
             q.pop();
             for (int i: nei[now]) {
-                if (i != now and path[now][i] > 0 and p[i] == 0) {
+                if (path[now][i] > 0 and p[i] == 0) {
                     p[i] = now;
                     if (i == sink)
                         return min(flow, path[now][i]);
