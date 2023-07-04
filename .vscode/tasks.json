@@ -12,7 +12,8 @@
 				"-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe",
 				"-O2",
-				"-std=c++20"
+				"-std=c++20",
+				"-DLOCAL"
 			],
 			"options": {
 				"cwd": "${fileDirname}"

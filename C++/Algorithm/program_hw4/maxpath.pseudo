@@ -1,0 +1,24 @@
+def maxpath():
+    priority_queue<flow, point> q
+    // sort by flow from big to little
+
+    maflow[|V|] 
+    // record the max flow from source of the residual graph
+
+    q.push(inf, source)
+    maflow[source] = inf
+
+    while !q.empty():
+
+        nowf, nowd = q.pop()
+
+        if nowf != maxflow[nowd]: continue
+
+        for x in nei[nowd]:
+            if path[nowd][x] > 0 and maxflow[x] < min(nowf, path[nowd][x]):
+                parent[x] = nowd
+                maflow[x] = min(nowf, path[nowd][x])
+                q.push(maflow[x], x)
+        
+        return maxflow[sink]
+
