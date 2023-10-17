@@ -7,12 +7,12 @@ f = open(path, 'r')
 thread = []
 time = []
 
-for i in range(100, 10100, 100):
+for i in range(10, 1000, 5):
     line = f.readline()
     thread.append(int(line))
     time.append(i)
 
-plot(time,thread, color = "g" , label = 'ek')
+plot(time,thread, color = "g")
 f.close()
 
 path = "C:/Code/code-pratice/C++/Algorithm/program_hw4/mathpath_1000-10000E.out"
@@ -22,13 +22,13 @@ f = open(path, 'r')
 thread = []
 time = []
 
-for i in range(100, 10100, 100):
+for i in range(10, 1000, 5):
     line = f.readline()
     thread.append(int(line))
     time.append(i)
 
-plot(time,thread, color = 'r', label = 'maxpath')
-legend(loc = "lower right")
+plot(time,thread, color = 'r')
+# pylab.legend(loc = "lower right")
 xlabel("|E|")
 ylabel("ns")
 
